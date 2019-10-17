@@ -8,12 +8,12 @@ const initialState = {
 };
 
 //Action types
-export const REQUEST_BUDGET_DATA = "REQUEST_BUDGET_DATA";
-export const ADD_PURCHASE = "ADD_PURCHASE";
-export const REMOVE_PURCHASE = "REMOVE_PURCHASE";
+const REQUEST_BUDGET_DATA = "REQUEST_BUDGET_DATA"
+const ADD_PURCHASE = "ADD_PURCHASE";
+const REMOVE_PURCHASE = "REMOVE_PURCHASE";
 
 export const requestBudgetData = () => {
-  let data = axios.get("/api/budget-data").then(res => res.data);
+  const data = axios.get("/api/budget-data").then(res => res.data);
   return {
     type: REQUEST_BUDGET_DATA,
     payload: data
@@ -21,7 +21,7 @@ export const requestBudgetData = () => {
 };
 
 export const addPurchase = (price,description,category) => {
-  let data = axios
+  const data = axios
     .post("/api/budget-data/purchase", {
       description,
       price,
@@ -35,7 +35,7 @@ export const addPurchase = (price,description,category) => {
 };
 
 export const removePurchase = (id) => {
-  let data = axios
+  const data = axios
     .delete(`/api/budget-data/purchase/${id}`)
     .then(res => res.data);
   return {
@@ -57,7 +57,7 @@ export default function reducer(state = initialState, action) {
     case REMOVE_PURCHASE + "_PENDING":
       return { ...state, loading: true };
     case REMOVE_PURCHASE + "_FULLFILLED":
-      return { ...state, loading: false, purchases: action.payload };
+      return { ...state,purchases: action.payload,loading:false };
     default:
       return state;
   }

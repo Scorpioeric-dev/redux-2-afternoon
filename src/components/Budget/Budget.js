@@ -26,9 +26,9 @@ class Budget extends Component {
 
     return (
       <Background>
-        {Loading ? <Loading /> : null}
+        {loading ? <Loading /> : null}
         <div className="budget-container">
-          <Nav />
+          <Nav firstName={firstName}  lastName={lastName} />
           <div className="content-container">
             <div className="purchases-container">
               <AddPurchase addPurchase={this.props.addPurchase} />
@@ -48,10 +48,10 @@ class Budget extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(reduxState) {
   return {
-    budget: state.budget,
-    user: state.user
+    budget: reduxState.budget,
+    user: reduxState.user
   };
 }
 
